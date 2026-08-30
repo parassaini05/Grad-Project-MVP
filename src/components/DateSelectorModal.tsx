@@ -8,10 +8,7 @@ interface DateSelectorModalProps {
 }
 
 export default function DateSelectorModal({ onClose, onConfirm }: DateSelectorModalProps) {
-  const [dates, setDates] = useState<Array<{ text: string; full: string; fee: string; feeClass: string }>>([]);
-  const [selected, setSelected] = useState<string | null>(null);
-
-  useEffect(() => {
+  const [dates] = useState<Array<{ text: string; full: string; fee: string; feeClass: string }>>(() => {
     const generated = [];
     const today = new Date();
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -34,8 +31,9 @@ export default function DateSelectorModal({ onClose, onConfirm }: DateSelectorMo
         feeClass
       });
     }
-    setDates(generated);
-  }, []);
+    return generated;
+  });
+  const [selected, setSelected] = useState<string | null>(null);
 
   return (
     <>

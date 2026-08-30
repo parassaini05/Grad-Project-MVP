@@ -15,16 +15,19 @@ export default function ValidationHub({ productId, selectedDate, onDateSelected 
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    if (selectedDate && timeLeft > 0) {
+    if (selectedDate) {
       timer = setInterval(() => {
-        setTimeLeft((prev) => prev - 1);
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            onDateSelected(null);
+            return 15 * 60;
+          }
+          return prev - 1;
+        });
       }, 1000);
-    } else if (timeLeft <= 0) {
-      onDateSelected(null); // Reset when timer expires
-      setTimeLeft(15 * 60);
     }
     return () => clearInterval(timer);
-  }, [selectedDate, timeLeft, onDateSelected]);
+  }, [selectedDate, onDateSelected]);
 
   const formatTime = (seconds: number) => {
     const m = Math.floor(seconds / 60);
