@@ -86,8 +86,11 @@ export default function AddressPage() {
                 <div className="w-12 h-12 bg-gray-100 rounded-sm overflow-hidden flex-shrink-0 border border-gray-200">
                   <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                 </div>
-                <p className="text-[14px] text-myntra-dark">
-                  Estimated delivery by <span className="font-bold">{item.scheduledDate ? item.scheduledDate.split(', ')[1] : '3 Sep 2026'}</span>
+                <p className="text-[14px] text-myntra-dark flex items-center gap-2">
+                  <span>Estimated delivery by <span className="font-bold">{item.scheduledDate ? item.scheduledDate.split(', ')[1] : '3 Sep 2026'}</span></span>
+                  {item.scheduledDate && (
+                    <span className="bg-green-50 text-myntra-green border border-green-200 text-[10px] px-1.5 py-0.5 rounded-sm font-bold uppercase">Guaranteed</span>
+                  )}
                 </p>
               </div>
             ))}

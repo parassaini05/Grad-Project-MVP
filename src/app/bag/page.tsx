@@ -107,9 +107,9 @@ export default function BagPage() {
                     </div>
                     
                     {item.scheduledDate && (
-                      <div className="flex items-start gap-1 mt-1 text-myntra-green font-bold">
-                        <span className="material-symbols-outlined text-[14px]">local_shipping</span>
-                        <span className="text-[11px] leading-tight">Delivery by {item.scheduledDate.split(', ')[1]}</span>
+                      <div className="mt-2 inline-flex items-center gap-1 bg-green-50 border border-green-200 text-myntra-green px-2 py-1 rounded-sm w-max">
+                        <span className="material-symbols-outlined text-[14px]">verified</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider">Guaranteed: {item.scheduledDate.split(', ')[1]}</span>
                       </div>
                     )}
                   </div>
