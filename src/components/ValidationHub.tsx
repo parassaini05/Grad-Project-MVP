@@ -19,7 +19,7 @@ export default function ValidationHub({ productId, selectedDate, onDateSelected 
       timer = setInterval(() => {
         setTimeLeft((prev) => {
           if (prev <= 1) {
-            onDateSelected(null);
+            onDateSelected(null, 0);
             return 15 * 60;
           }
           return prev - 1;
