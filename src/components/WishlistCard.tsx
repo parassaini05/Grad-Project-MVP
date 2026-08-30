@@ -9,9 +9,10 @@ interface WishlistCardProps {
 export default function WishlistCard({ product }: WishlistCardProps) {
   const { removeFromWishlist, addToBag } = useWishlist();
   const [scheduledDate, setScheduledDate] = useState<string | null>(null);
+  const [deliveryFee, setDeliveryFee] = useState<number>(0);
 
   const handleMoveToBag = () => {
-    addToBag(product, scheduledDate);
+    addToBag(product, scheduledDate, deliveryFee);
     removeFromWishlist(product.id);
   };
 
@@ -47,7 +48,10 @@ export default function WishlistCard({ product }: WishlistCardProps) {
         <ValidationHub 
           productId={product.id} 
           selectedDate={scheduledDate} 
-          onDateSelected={setScheduledDate} 
+          onDateSelected={(date, fee) => {
+            setScheduledDate(date);
+            setDeliveryFee(fee || 0);
+          }} 
         />
         
       </div>

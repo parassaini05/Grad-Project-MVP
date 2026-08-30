@@ -6,7 +6,7 @@ import DateSelectorModal from './DateSelectorModal';
 interface ValidationHubProps {
   productId: string;
   selectedDate: string | null;
-  onDateSelected: (date: string | null) => void;
+  onDateSelected: (date: string | null, fee: number) => void;
 }
 
 export default function ValidationHub({ productId, selectedDate, onDateSelected }: ValidationHubProps) {
@@ -35,8 +35,8 @@ export default function ValidationHub({ productId, selectedDate, onDateSelected 
     return `${m}:${s.toString().padStart(2, '0')}`;
   };
 
-  const handleConfirmDate = (date: string) => {
-    onDateSelected(date);
+  const handleConfirmDate = (date: string, fee: number) => {
+    onDateSelected(date, fee);
     setIsModalOpen(false);
     setTimeLeft(15 * 60);
   };

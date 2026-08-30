@@ -16,6 +16,7 @@ export interface BagItem extends Product {
   scheduledDate: string | null;
   size: string;
   qty: number;
+  deliveryFee: number;
 }
 
 interface WishlistContextType {
@@ -25,7 +26,7 @@ interface WishlistContextType {
   isInWishlist: (productId: string) => boolean;
   
   bagItems: BagItem[];
-  addToBag: (product: Product, scheduledDate: string | null) => void;
+  addToBag: (product: Product, scheduledDate: string | null, deliveryFee?: number) => void;
   removeFromBag: (productId: string) => void;
 }
 
@@ -56,10 +57,10 @@ export function WishlistProvider({ children }: { children: React.ReactNode }) {
     return items.some(p => p.id === productId);
   };
 
-  const addToBag = (product: Product, scheduledDate: string | null) => {
+  const addToBag = (product: Product, scheduledDate: string | null, deliveryFee: number = 0) => {
     setBagItems((prev) => {
       if (!prev.find(p => p.id === product.id)) {
-        return [...prev, { ...product, scheduledDate, size: 'Upto 15"', qty: 1 }];
+        return [...prev, { ...product, scheduledDate, size: 'Upto 15"', qty: 1, deliveryFee }];
       }
       return prev;
     });

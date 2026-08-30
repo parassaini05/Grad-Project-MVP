@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 interface DateSelectorModalProps {
   onClose: () => void;
-  onConfirm: (date: string) => void;
+  onConfirm: (date: string, fee: number) => void;
 }
 
 export default function DateSelectorModal({ onClose, onConfirm }: DateSelectorModalProps) {
@@ -94,7 +94,13 @@ export default function DateSelectorModal({ onClose, onConfirm }: DateSelectorMo
         <div className="absolute bottom-0 w-full p-4 bg-white border-t border-myntra-border">
           <button 
             disabled={!selected}
-            onClick={() => selected && onConfirm(selected)}
+            onClick={() => {
+              if (selected) {
+                const selectedDateObj = dates.find(d => d.full === selected);
+                const fee = selectedDateObj?.fee === '+ ₹99' ? 99 : 0;
+                onConfirm(selected, fee);
+              }
+            }}
             className={`w-full py-3.5 rounded-[4px] font-bold text-[14px] uppercase tracking-wide transition-all ${
               selected 
                 ? 'bg-myntra-pink text-white shadow-md' 

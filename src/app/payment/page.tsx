@@ -8,9 +8,10 @@ export default function PaymentPage() {
   const router = useRouter();
   const { bagItems } = useWishlist();
 
-  // For MVP, just sum up the first item if exists + 10 delivery fee to match screenshot (3999 + 10 = 4009)
   const baseTotal = bagItems.reduce((acc, item) => acc + parseInt(item.price.replace(/[^\d]/g, '')), 0);
-  const total = baseTotal > 0 ? baseTotal + 10 : 0; // matching screenshot 4009
+  const expeditedDeliveryFees = bagItems.reduce((acc, item) => acc + (item.deliveryFee || 0), 0);
+  const platformFee = 10; // Standard Myntra platform fee
+  const total = baseTotal > 0 ? baseTotal + expeditedDeliveryFees + platformFee : 0;
 
   return (
     <div className="flex-1 overflow-y-auto pb-32 bg-myntra-light-gray h-full relative">

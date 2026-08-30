@@ -10,7 +10,7 @@ export default function BagPage() {
   const router = useRouter();
 
   // For MVP, just sum up the first item if exists
-  const total = bagItems.reduce((acc, item) => acc + parseInt(item.price.replace(/[^\d]/g, '')), 0);
+  const total = bagItems.reduce((acc, item) => acc + parseInt(item.price.replace(/[^\d]/g, '')) + (item.deliveryFee || 0), 0);
 
   return (
     <div className="flex-1 overflow-y-auto pb-32 bg-myntra-light-gray h-full relative">
