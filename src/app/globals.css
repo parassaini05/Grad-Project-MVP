@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-myntra-pink: #FF3F6C;
+  --color-myntra-dark: #282C3F;
+  --color-myntra-gray: #535766;
+  --color-myntra-light-gray: #F5F5F6;
+  --color-myntra-border: #EAEAEA;
+  --color-myntra-green: #03A685;
+}
+
+@layer base {
+  body {
+    /* Gray background for desktop view to make the mobile app container pop */
+    background-color: #E2E8F0; 
+    color: var(--color-myntra-dark);
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.bottom-sheet {
+  animation: slideUp 0.3s ease-out forwards;
+}
