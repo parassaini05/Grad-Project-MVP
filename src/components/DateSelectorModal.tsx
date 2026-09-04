@@ -21,8 +21,8 @@ export default function DateSelectorModal({ onClose, onConfirm }: DateSelectorMo
       const dateString = `${d.getDate()} ${months[d.getMonth()]}`;
       const fullDateText = `${dayName}, ${dateString}`;
       
-      const feeText = i <= 2 ? '+ ₹99' : 'FREE';
-      const feeClass = i <= 2 ? 'text-myntra-gray' : 'text-myntra-green font-bold';
+      const feeText = i <= 2 ? '+ ₹99' : 'Standard';
+      const feeClass = i <= 2 ? 'text-myntra-gray' : 'text-myntra-gray font-semibold';
       
       generated.push({
         text: dayName,

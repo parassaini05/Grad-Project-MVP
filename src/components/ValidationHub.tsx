@@ -12,14 +12,17 @@ interface ValidationHubProps {
 export default function ValidationHub({ productId, selectedDate, onDateSelected }: ValidationHubProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes
+  const [hasExpired, setHasExpired] = useState(false);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (selectedDate) {
+      setHasExpired(false);
       timer = setInterval(() => {
         setTimeLeft((prev) => {
           if (prev <= 1) {
             onDateSelected(null, 0);
+            setHasExpired(true);
             return 15 * 60;
           }
           return prev - 1;
@@ -52,6 +55,15 @@ export default function ValidationHub({ productId, selectedDate, onDateSelected 
                 14 days return available
               </span>
             </div>
+            
+            {hasExpired && (
+              <div className="flex items-start gap-1.5 bg-gray-50 p-2 rounded-md border border-gray-200 mt-1">
+                <span className="material-symbols-outlined text-gray-500 text-[14px]">history</span>
+                <span className="text-[11px] text-gray-600 leading-tight mt-0.5">
+                  Slot expired, but you can select a new date anytime.
+                </span>
+              </div>
+            )}
             
             <button 
               onClick={() => setIsModalOpen(true)}
