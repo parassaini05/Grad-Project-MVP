@@ -87,7 +87,7 @@ export default function ValidationHub({ productId, selectedDate, onDateSelected 
                   Guaranteed Delivery on {selectedDate.split(', ')[1]} locked.
                 </span>
                 <span className="text-[10px] text-myntra-gray mt-1">
-                  Move to Bag in <span className="text-myntra-pink font-bold">{formatTime(timeLeft)}</span> to secure slot.
+                  Move to Bag in <span className="text-myntra-pink font-bold">{formatTime(timeLeft)}</span> to secure delivery date.
                 </span>
               </div>
             </div>
